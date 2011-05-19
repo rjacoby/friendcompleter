@@ -16,7 +16,9 @@ function populateFriendList() {
 }
 
 function setupFbAutocompleter() {
-  $('#footer').append("<div id='picker'><input id='fbFriend'/></div><div id='fbFriendId'/>");
+  $('#fb-root').append("<input id='fbFriendId' name='fbFriendId' type='hidden' value=''/>");
+
+  $('#footer').append("<div id='picker'><input id='fbFriend'/></div>");
   populateFriendList();
 
   $("input#fbFriend").autocomplete({
@@ -37,7 +39,7 @@ function setupFbAutocompleter() {
     },
     select: function(event, ui) {
       var selectedObj = ui.item;
-      $('#fbFriendId').html(selectedObj.fbId);
+      $('input#fbFriendId').val(selectedObj.fbId);
       $(this).val(selectedObj.label);
       return false;
     }
