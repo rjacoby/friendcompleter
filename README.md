@@ -21,6 +21,7 @@ friend's Facebook ID. But there's no blessed picker anymore for that,
 so...
 
 What it does:
+
 * Uses the current FB object to make a graph call and get the current
   user's friends
 * Converts that JSON into a structure that jQuery UI's autocomplete
