@@ -5,12 +5,12 @@
  * @depends: Facebook JSDK, jQuery UI
  ************************************************************************/
 
-var fbFriendList;
-
 function populateFriendList() {
-  if (!fbFriendList) {
+  // Look for an existing global 'fbFriendList', either from a previous
+  // run of the function, or set into the page at generation time.
+  if (!window.fbFriendList) {
     FB.api('/me/friends', function(response) {
-      fbFriendList = response.data;
+      window.fbFriendList = response.data;
     });
   }
 }
@@ -30,7 +30,6 @@ function setupFbAutocompleter() {
         if (matcher.test(friendName)) {
           suggestions.push({
             label: friendName,
-            // value: item.id,
             fbId: item.id
           });
         }
