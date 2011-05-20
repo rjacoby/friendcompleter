@@ -1,25 +1,47 @@
 /************************************************************************
  * @name:  fb-friendcompleter
  * @author: (c) Rafi Jacoby
- * @version: 0.0.1
+ * @version: 0.0.2
  * @depends: Facebook JSDK, jQuery UI
  ************************************************************************/
 
-function populateFriendList() {
-  // Look for an existing global 'fbFriendList', either from a previous
-  // run of the function, or set into the page at generation time.
-  if (!window.fbFriendList) {
-    FB.api('/me/friends', function(response) {
-      window.fbFriendList = response.data;
+function convertFriendListToAutocompletable(){
+  if (window.fbFriendList && !(window.fbFriendList[0].label)) {
+    // We have a friendlist, but it's missing the 'label' field that
+    // autocomplete likes.
+    $.each(window.fbFriendList, function(idx, item) {
+      window.fbFriendList[idx].label = item.name;
     });
   }
 }
 
+function populateFriendList() {
+  if (!window.fbFriendList) {
+    FB.api('/me/friends', function(response) {
+      window.fbFriendList = response.data;
+      convertFriendListToAutocompletable();
+    });
+  }
+}
+
+
+
 function setupFbAutocompleter() {
-  $('#fb-root').append("<input id='fbFriendId' name='fbFriendId' type='hidden' value=''/>");
+  // Look for an existing global 'fbFriendList', either from a previous
+  // run of the function, or set into the page at generation time.
+  if (!(window.fbFriendList)) {
+    populateFriendList();
+  } else {
+    // Make sure the pre-existing friend list is autocomplete-friendly
+    convertFriendListToAutocompletable();
+  }
+
+  // Make sure we can put our hidden ID somewhere
+  if ($('input#fbFriendId') == 0) {
+    $('#fb-root').append("<input id='fbFriendId' name='fbFriendId' type='hidden' value=''/>");
+  }
 
   $('#footer').append("<div id='picker'><input id='fbFriend'/></div>");
-  populateFriendList();
 
   $("input#fbFriend").autocomplete({
     source: function(request, response) {
@@ -28,17 +50,14 @@ function setupFbAutocompleter() {
       $.each(fbFriendList, function(idx, item) {
         friendName = item.name || item;
         if (matcher.test(friendName)) {
-          suggestions.push({
-            label: friendName,
-            fbId: item.id
-          });
+          suggestions.push(item);
         }
       });
       response(suggestions);
     },
     select: function(event, ui) {
       var selectedObj = ui.item;
-      $('input#fbFriendId').val(selectedObj.fbId);
+      $('input#fbFriendId').val(selectedObj.id);
       $(this).val(selectedObj.label);
       return false;
     }
