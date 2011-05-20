@@ -24,8 +24,6 @@ function populateFriendList() {
   }
 }
 
-
-
 function setupFbAutocompleter(inputDivId) {
   // Look for an existing global 'fbFriendList', either from a previous
   // run of the function, or set into the page at generation time.
@@ -60,5 +58,4 @@ function setupFbAutocompleter(inputDivId) {
       return false;
     }
   });
-
 }
