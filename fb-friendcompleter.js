@@ -1,7 +1,7 @@
 /************************************************************************
  * @name:  fb-friendcompleter
  * @author: (c) Rafi Jacoby
- * @version: 0.0.2
+ * @version: 0.0.3
  * @depends: Facebook JSDK, jQuery UI
  ************************************************************************/
 
@@ -26,7 +26,7 @@ function populateFriendList() {
 
 
 
-function setupFbAutocompleter() {
+function setupFbAutocompleter(inputDivId) {
   // Look for an existing global 'fbFriendList', either from a previous
   // run of the function, or set into the page at generation time.
   if (!(window.fbFriendList)) {
@@ -37,13 +37,11 @@ function setupFbAutocompleter() {
   }
 
   // Make sure we can put our hidden ID somewhere
-  if ($('input#fbFriendId') == 0) {
+  if ($('input#fbFriendId').length == 0) {
     $('#fb-root').append("<input id='fbFriendId' name='fbFriendId' type='hidden' value=''/>");
   }
 
-  $('#footer').append("<div id='picker'><input id='fbFriend'/></div>");
-
-  $("input#fbFriend").autocomplete({
+  $(inputDivId).autocomplete({
     source: function(request, response) {
       var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
       var suggestions = [];

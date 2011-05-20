@@ -54,7 +54,7 @@ Assumptions
 Usage
 ---
 * Add to your included scripts, after Facebook and jQuery UI.
-* Add a call to `setupFbAutocompleter();` after Facebook JS has been initialized. One place to do this is inside the recommended `window.fbAsyncInit` function.
+* Add a call to `setupFbAutocompleter(yourAutocompleteFieldId);` after Facebook JS has been initialized. One place to do this is inside the recommended `window.fbAsyncInit` function. Make sure `yourAutocompleteFieldId` is a usable target for jQuery's `$` operator, e.g. `input#myFriendCompleter`.
 
 Todo
 ---
