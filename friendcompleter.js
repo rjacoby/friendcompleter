@@ -1,11 +1,11 @@
 /************************************************************************
- * @name:  fb-friendcompleter
+ * @name:  friendcompleter
  * @author: (c) Rafi Jacoby
- * @version: 0.1.1
+ * @version: 0.2
  * @depends: Facebook JSDK, jQuery UI
  ************************************************************************/
 
-function convertFriendListToAutocompletable(){
+function convertFriendListToCompletable(){
   if (window.fbFriendList && !(window.fbFriendList[0].label)) {
     // We have a friendlist, but it's missing the 'label' field that
     // autocomplete likes.
@@ -25,19 +25,19 @@ function populateFriendList() {
   if (!window.fbFriendList) {
     FB.api('/me/friends', function(response) {
       window.fbFriendList = response.data;
-      convertFriendListToAutocompletable();
+      convertFriendListToCompletable();
     });
   }
 }
 
-function setupFbAutocompleter(inputDivId) {
+function setupFriendCompleter(inputDivId) {
   // Look for an existing global 'fbFriendList', either from a previous
   // run of the function, or set into the page at generation time.
   if (!(window.fbFriendList)) {
     populateFriendList();
   } else {
     // Make sure the pre-existing friend list is autocomplete-friendly
-    convertFriendListToAutocompletable();
+    convertFriendListToCompletable();
   }
 
   // Make sure we can put our hidden ID somewhere

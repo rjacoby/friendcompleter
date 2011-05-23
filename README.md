@@ -1,6 +1,6 @@
-fb-friendcompleter
+friendcompleter
 ===
-fb-friendcompleter is a simple Javascript library that implements an
+friendcompleter is a simple Javascript library that implements an
 autocompleter for Facebook friends which populates the Facebook ID into
 a hidden field. This could be used for passing a friend ID into the
 [Facebook Feed Dialog] (http://developers.facebook.com/docs/reference/dialogs/feed/)
@@ -54,7 +54,9 @@ Assumptions
 Usage
 ---
 * Add to your included scripts, after Facebook and jQuery UI.
-* Add a call to `setupFbAutocompleter(yourAutocompleteFieldId);` after Facebook JS has been initialized. One place to do this is inside the recommended `window.fbAsyncInit` function. Make sure `yourAutocompleteFieldId` is a usable target for jQuery's `$` operator, e.g. `input#myFriendCompleter`.
+* Add a call to `setupFriendCompleter(yourAutocompleteFieldId);` after Facebook JS has been initialized. One place to do this is inside the recommended `window.fbAsyncInit` function. Make sure `yourAutocompleteFieldId` is a usable target for jQuery's `$` operator, e.g. `input#myFriendCompleter`.
+* Call `$('input#fbFriendId').val()` in your code to get the selected
+  friend's Facebook ID.
 
 Todo
 ---
