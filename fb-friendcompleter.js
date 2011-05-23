@@ -1,7 +1,7 @@
 /************************************************************************
  * @name:  fb-friendcompleter
  * @author: (c) Rafi Jacoby
- * @version: 0.1.0
+ * @version: 0.1.1
  * @depends: Facebook JSDK, jQuery UI
  ************************************************************************/
 
@@ -64,3 +64,5 @@ function setupFbAutocompleter(inputDivId) {
       $(this).val(selectedObj.label);
       return false;
     }
+  });
+}
