@@ -1,7 +1,7 @@
 /************************************************************************
  * @name:  fb-friendcompleter
  * @author: (c) Rafi Jacoby
- * @version: 0.0.3
+ * @version: 0.1.0
  * @depends: Facebook JSDK, jQuery UI
  ************************************************************************/
 
@@ -11,6 +11,12 @@ function convertFriendListToAutocompletable(){
     // autocomplete likes.
     $.each(window.fbFriendList, function(idx, item) {
       window.fbFriendList[idx].label = item.name;
+    });
+    // Sort it so list makes sense in autocomplete results
+    window.fbFriendList.sort(function(a, b) {
+      var compA = a.name.toUpperCase();
+      var compB = b.name.toUpperCase();
+      return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
     });
   }
 }
@@ -39,6 +45,7 @@ function setupFbAutocompleter(inputDivId) {
     $('#fb-root').append("<input id='fbFriendId' name='fbFriendId' type='hidden' value=''/>");
   }
 
+  // Add the custom source and select functions to the autocompleter.
   $(inputDivId).autocomplete({
     source: function(request, response) {
       var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
@@ -57,5 +64,3 @@ function setupFbAutocompleter(inputDivId) {
       $(this).val(selectedObj.label);
       return false;
     }
-  });
-}
