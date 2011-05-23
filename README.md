@@ -58,4 +58,4 @@ Usage
 
 Todo
 ---
-* Modularize the autocompleter, taking an argument of element to use.
+* Add demo app.
