@@ -11,6 +11,8 @@
   <script src="http://connect.facebook.net/en_US/all.js"></script>
   <script src="/friendpicker.js"></script>
 
+  <link href="/stylesheets/jquery-ui-1.8.13.custom.css?1305925157" media="screen" rel="stylesheet" type="text/css" /> 
+
   <title>rjacoby/friendcompleter @ GitHub</title>
 
   <style type="text/css">
@@ -39,6 +41,8 @@
 </head>
 
 <body>
+  <div id="fb-root"></div>
+
   <a href="http://github.com/rjacoby/friendcompleter"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
   <div id="container">
@@ -49,6 +53,13 @@
     <div class="description">
       A pure Javascript, server-less library for doing Facebook friend picking via jQuery autocomplete.
     </div>
+
+    <h2>Demo</h2>
+    <div class="demo">
+      <fb:login-button autologoutlink="true"></fb:login-button>
+      <div id='picker'></div>
+    </div>
+    <script src="/wallpost.js"></script>
 
     <h2>Dependencies</h2>
     <p>
