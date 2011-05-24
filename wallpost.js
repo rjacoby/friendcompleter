@@ -2,8 +2,8 @@ function toggleContent() {
   FB.getLoginStatus(function(response) {
     pickerDiv = $('#picker');
     if (response.session) {
-      pickerDiv.html("<h2>Type a friend\'s name to select them for wall post.</h2><div id='selector'><div id='selectorInput' style='display: inline-block; margin:10px;height:48px;'><input id='fbAutocomplete' size=50 style='font-size: 18px;' /></div><div id='postButton' display='none' style='display: none;'><a id='postButtonLink' href='#'>Post to Wall</a></div></div>");
-      setupFbAutocompleter("input#fbAutocomplete");
+      pickerDiv.html("<h3>Type a friend\'s name to select them for wall post.</h3><div id='selector'><div id='selectorInput' style='display: inline-block; margin:10px;height:48px;'><input id='fbAutocomplete' size=50 style='font-size: 18px;' /></div><div id='postButton' display='none' style='display: none;'><a id='postButtonLink' href='#'>Post to Wall</a></div></div>");
+      setupFriendCompleter("input#fbAutocomplete");
       
       $('input#fbAutocomplete').bind('autocompleteclose', function(event, ui) {
         var postButton = $('div#postButton');
@@ -17,7 +17,7 @@ function toggleContent() {
       $('input#fbAutocomplete').focus();
 
     } else {
-      pickerDiv.html('<h2>Log in to try the friend picker.</div>');
+      pickerDiv.html('<h3>Log in to try the friend picker.</div>');
     }
   });
 }
