@@ -10,6 +10,7 @@
   <script src="javascripts/jquery-ui.min.js"></script>
   <script src="http://connect.facebook.net/en_US/all.js"></script>
   <script src="friendpicker.js"></script>
+  <script src="wallpost.js"></script>
 
   <link href="/stylesheets/jquery-ui-1.8.13.custom.css?1305925157" media="screen" rel="stylesheet" type="text/css" /> 
 
@@ -55,11 +56,21 @@
     </div>
 
     <h2>Demo</h2>
+    <script>
+      FB.init({ appId:testAppId, cookie:true, status:true, xfbml:true });
+
+      // Change state with events from FB's button
+      FB.Event.subscribe('auth.statusChange', function(response) {
+        toggleContent();
+      });
+
+      // Pick up current state.
+      toggleContent();
+    </script>
     <div class="demo">
       <fb:login-button autologoutlink="true"></fb:login-button>
       <div id='picker'></div>
     </div>
-    <script src="wallpost.js"></script>
 
     <h2>Dependencies</h2>
     <p>

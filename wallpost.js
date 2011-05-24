@@ -35,13 +35,3 @@ function doWallPost() {
   );
   return false;
 }
-
-FB.init({ appId:testAppId, cookie:true, status:true, xfbml:true });
-
-// Change state with events from FB's button
-FB.Event.subscribe('auth.statusChange', function(response) {
-  toggleContent();
-});
-
-// Pick up current state.
-toggleContent();
