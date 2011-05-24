@@ -17,7 +17,7 @@ function toggleContent() {
       $('input#fbAutocomplete').focus();
 
     } else {
-      pickerDiv.html('<span class='prompt'>Log in to try the friend picker.</div>');
+      pickerDiv.html('<span class="prompt">Log in to try the friend picker.</div>');
     }
   });
 }
