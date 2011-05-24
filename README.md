@@ -58,6 +58,3 @@ Usage
 * Call `$('input#fbFriendId').val()` in your code to get the selected
   friend's Facebook ID.
 
-Todo
----
-* Add demo app.
