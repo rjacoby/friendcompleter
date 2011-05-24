@@ -56,7 +56,7 @@
       <span class="small">by <a href="http://github.com/rjacoby">rjacoby</a></span></h1>
 
     <div class="description">
-      A pure Javascript, server-less library for doing Facebook friend picking via jQuery autocomplete.
+      friendcompleter is a simple Javascript library that implements an autocompleter for Facebook friends which populates the Facebook ID into a hidden field. This could be used for passing a friend ID into the <a href="http://developers.facebook.com/docs/reference/dialogs/feed/">Facebook Feed Dialog</a> for posting on their wall, or any other use where you need to select an ID from the friend list.
     </div>
 
     <h2>Demo</h2>
@@ -82,35 +82,58 @@
       <li><a href="http://developers.facebook.com/docs/reference/javascript">Facebook Javascript SDK</a></li>
       <li><a href="http://jqueryui.com">jQuery UI</a></li>
     </ul>
-<h2>License</h2>
-<p>The MIT License
 
-Copyright (c) 2011 Rafi Jacoby
+    <h2>How It Works (and Why It May Not)</h2
+<p><em>This plugin is kind of a crazy idea.</em></p> 
+ 
+<p>A designer wanted to do the old-school "post to your friend's wall"
+thing. Facebook's JS SDK dialogs still support this, if you know the
+friend's Facebook ID. But there's no blessed picker anymore for that,
+so...</p> 
+ 
+<p>What it does:</p> 
+ 
+<ul> 
+<li>Uses the current FB object to make a graph call and get the current
+user's friends</li> 
+<li>Converts that JSON into a structure that jQuery UI's autocomplete
+likes</li> 
+<li>Provides functions that let autocomplete use the local friend list as
+a source.</li> 
+</ul><p>This is really an experiment. Is the browser the right place to pull
+down thousands of friends from Facebook and search through them?
+Probably not - but we can do it anyway, without any server backend.</p> 
+ 
+<h2>Does It Scale?</h2> 
+ 
+<p>Short answer: maybe.</p> 
+ 
+<p>While jQuery's site tells you not to autocomplete against 100+ items
+locally, Chrome and Firefox seem to be pretty good at this. I've tested
+it with a user that has 1500+ friends, and it was quite snappy.</p> 
+ 
+<p>How will IE handle it? Not tested yet...</p> 
+ 
+<p>Also, it only caches the friend list for the life of the current page.
+This could be really horrible!</p> 
+ 
+<h2>Assumptions</h2> 
+ 
+<ul> 
+<li>User is logged in to Facebook.</li> 
+<li>Application has permission to get user's friend list.</li> 
+</ul><h2>Usage</h2> 
+ 
+<ul> 
+<li>Add to your included scripts, after Facebook and jQuery UI.</li> 
+<li>Add a call to <code>setupFriendCompleter(yourAutocompleteFieldId);</code> after Facebook JS has been initialized. One place to do this is inside the recommended <code>window.fbAsyncInit</code> function. Make sure <code>yourAutocompleteFieldId</code> is a usable target for jQuery's <code>$</code> operator, e.g. <code>input#myFriendCompleter</code>.</li> 
+<li>Call <code>$('input#fbFriendId').val()</code> in your code to get the selected
+friend's Facebook ID.</li> 
+</ul>
+    
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</p>
 <h2>Authors</h2>
 <p>Rafi Jacoby (rjacoby@astrokid.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Rafi Jacoby (rjacoby@astrokid.com)<br/>      </p>
-
 
     <h2>Download</h2>
     <p>
