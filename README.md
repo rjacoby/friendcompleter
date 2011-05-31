@@ -39,7 +39,7 @@ Short answer: maybe.
 
 While jQuery's site tells you not to autocomplete against 100+ items
 locally, Chrome and Firefox seem to be pretty good at this. I've tested
-it with a user that has 1500+ friends, and it was quite snappy.
+it with a user that has 5000 friends, and it was quite snappy.
 
 How will IE handle it? Not tested yet...
 
